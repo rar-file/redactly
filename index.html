@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Redactly — Redact sensitive documents in seconds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #0b1733;
+    --navy-2: #122046;
+    --slate-900: #0f172a;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748b;
+    --slate-400: #94a3b8;
+    --slate-300: #cbd5e1;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --slate-50: #f8fafc;
+    --white: #ffffff;
+    --accent: #2563eb;
+    --accent-600: #1d4ed8;
+    --accent-50: #eff6ff;
+    --accent-100: #dbeafe;
+    --line: #e6eaf1;
+    --shadow-sm: 0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.04);
+    --shadow-md: 0 4px 12px rgba(15,23,42,.06), 0 2px 6px rgba(15,23,42,.04);
+    --shadow-lg: 0 12px 32px rgba(15,23,42,.10), 0 4px 12px rgba(15,23,42,.06);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--slate-700);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent-100); }
+
+  /* ---------- Top bar ---------- */
+  header.topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.82);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    max-width: 1120px; margin: 0 auto; padding: 0 24px;
+    height: 64px; display: flex; align-items: center; gap: 28px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand .logo {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: linear-gradient(160deg, var(--navy-2), var(--navy));
+    display: grid; place-items: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .brand .wordmark { font-weight: 700; font-size: 17px; color: var(--slate-900); letter-spacing: -.01em; }
+  .nav-links { display: flex; gap: 26px; margin-left: 8px; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--slate-600); transition: color .15s; }
+  .nav-links a:hover { color: var(--slate-900); }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 18px; }
+  .powered {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12px; font-weight: 500; color: var(--slate-500);
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 12px; background: var(--slate-50);
+  }
+  .powered .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  /* ---------- Layout ---------- */
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 84px 0 36px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(60% 60% at 50% -10%, rgba(37,99,235,.08), transparent 70%);
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; color: var(--accent-600);
+    background: var(--accent-50); border: 1px solid var(--accent-100);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: 52px; line-height: 1.08; font-weight: 800;
+    letter-spacing: -.03em; color: var(--slate-900);
+    margin: 0 auto 18px; max-width: 760px;
+  }
+  .hero p.sub {
+    font-size: 18px; color: var(--slate-500); max-width: 620px;
+    margin: 0 auto 38px;
+  }
+
+  /* ---------- Upload card ---------- */
+  .upload-wrap { max-width: 620px; margin: 0 auto; }
+  .dropzone {
+    border: 1.5px dashed var(--slate-300); border-radius: var(--radius);
+    background: var(--slate-50);
+    padding: 44px 28px; cursor: pointer; transition: all .18s ease;
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .dropzone:hover { border-color: var(--accent); background: var(--accent-50); }
+  .dropzone.drag { border-color: var(--accent); background: var(--accent-50); box-shadow: var(--shadow-md); }
+  .dz-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--white); border: 1px solid var(--line);
+    display: grid; place-items: center; box-shadow: var(--shadow-sm);
+    color: var(--accent);
+  }
+  .dz-title { font-size: 16px; font-weight: 600; color: var(--slate-900); }
+  .dz-hint { font-size: 13px; color: var(--slate-500); }
+  .sample-link {
+    margin-top: 18px; font-size: 14px; font-weight: 500; color: var(--accent-600);
+    display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  }
+  .sample-link:hover { color: var(--accent); text-decoration: underline; }
+
+  /* ---------- Trust strip ---------- */
+  .trust {
+    max-width: 980px; margin: 56px auto 0;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .trust .item {
+    background: var(--white); padding: 22px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .trust .item svg { color: var(--accent); }
+  .trust .item .t { font-size: 14px; font-weight: 600; color: var(--slate-900); }
+
+  /* ---------- Loading ---------- */
+  .panel { max-width: 980px; margin: 60px auto 0; }
+  .loading {
+    display: none; align-items: center; gap: 16px; justify-content: center;
+    padding: 40px; border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--slate-50); color: var(--slate-600); font-weight: 500;
+  }
+  .loading.show { display: flex; }
+  .spinner {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2.5px solid var(--slate-200); border-top-color: var(--accent);
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Error ---------- */
+  .error-box {
+    display: none; margin: 24px auto 0; max-width: 620px;
+    border: 1px solid #fecaca; background: #fef2f2; color: #b91c1c;
+    border-radius: var(--radius-sm); padding: 14px 18px; font-size: 14px; font-weight: 500;
+    align-items: center; gap: 10px;
+  }
+  .error-box.show { display: flex; }
+
+  /* ---------- Results ---------- */
+  .results { display: none; }
+  .results.show { display: block; }
+  .results-head { text-align: center; margin-bottom: 8px; }
+  .results-head .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; color: #047857;
+    background: #ecfdf5; border: 1px solid #a7f3d0; padding: 6px 14px;
+    border-radius: 999px; margin-bottom: 16px;
+  }
+  .results-head h2 {
+    font-size: 34px; font-weight: 800; color: var(--slate-900);
+    letter-spacing: -.02em; margin: 0 0 6px;
+  }
+  .results-head p { color: var(--slate-500); margin: 0; font-size: 15px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px 0 38px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500; color: var(--slate-700);
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: 999px; padding: 8px 14px; box-shadow: var(--shadow-sm);
+  }
+  .chip .cat { font-weight: 600; color: var(--slate-900); }
+  .chip .count {
+    font-size: 12px; font-weight: 600; color: var(--accent-600);
+    background: var(--accent-50); border-radius: 999px; padding: 2px 9px;
+  }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .doc-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .doc-card .cap {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px; border-bottom: 1px solid var(--line);
+    font-size: 13px; font-weight: 600; color: var(--slate-700);
+    background: var(--slate-50);
+  }
+  .doc-card .cap .pill {
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px;
+    margin-left: auto; text-transform: uppercase; letter-spacing: .03em;
+  }
+  .cap.orig .pill { color: var(--slate-500); background: var(--slate-100); }
+  .cap.red .pill { color: var(--accent-600); background: var(--accent-50); }
+  .doc-card .preview { padding: 14px; background: var(--slate-100); }
+  .doc-card .preview img {
+    width: 100%; height: auto; display: block; border-radius: 6px;
+    border: 1px solid var(--line); background: var(--white);
+  }
+
+  .actions { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 38px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--accent); color: var(--white);
+    font-size: 15px; font-weight: 600; padding: 13px 24px;
+    border-radius: var(--radius-sm); border: none; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(37,99,235,.28); transition: all .15s;
+  }
+  .btn-primary:hover { background: var(--accent-600); box-shadow: 0 6px 18px rgba(37,99,235,.34); transform: translateY(-1px); }
+  .reset-link { font-size: 14px; font-weight: 500; color: var(--slate-500); cursor: pointer; }
+  .reset-link:hover { color: var(--slate-900); text-decoration: underline; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 96px; border-top: 1px solid var(--line);
+    background: var(--slate-50); padding: 40px 0 48px;
+  }
+  footer .inner { text-align: center; color: var(--slate-500); font-size: 13px; line-height: 1.7; }
+  footer .inner strong { color: var(--slate-700); font-weight: 600; }
+  footer .note { margin-top: 6px; color: var(--slate-400); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 38px; }
+    .trust { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .hero { padding: 56px 0 28px; }
+    .hero h1 { font-size: 32px; }
+    .hero p.sub { font-size: 16px; }
+    .compare { grid-template-columns: 1fr; }
+    .powered { display: none; }
+    .actions { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L4 5v6c0 5 3.4 8.4 8 11 4.6-2.6 8-6 8-11V5l-8-3z" fill="#ffffff" fill-opacity="0.12" stroke="#cfe0ff" stroke-width="1.4" stroke-linejoin="round"/>
+            <rect x="7.5" y="10.5" width="9" height="3" rx="1.2" fill="#7aa6ff"/>
+          </svg>
+        </span>
+        <span class="wordmark">Redactly</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#product">Product</a>
+        <a href="#security">Security</a>
+        <a href="#demo">Demo</a>
+      </nav>
+      <div class="nav-right">
+        <span class="powered"><span class="dot"></span>Powered by Gemma-4 on Cerebras</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="product">
+    <div class="container">
+      <span class="eyebrow">Enterprise document privacy</span>
+      <h1>Redact sensitive documents in seconds.</h1>
+      <p class="sub">Redactly auto-detects and truly removes names, emails, SSNs, account numbers and addresses from your PDFs — text deleted, not just hidden.</p>
+
+      <div class="upload-wrap" id="demo">
+        <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload a PDF">
+          <span class="dz-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 16V4"/><path d="M7 9l5-5 5 5"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/>
+            </svg>
+          </span>
+          <span class="dz-title">Drop a PDF or click to browse</span>
+          <span class="dz-hint">Your file is processed in your environment and never retained.</span>
+          <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+        </div>
+        <div style="text-align:center;">
+          <span class="sample-link" id="sampleLink">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            Try it on a sample document
+          </span>
+        </div>
+      </div>
+
+      <!-- Trust strip -->
+      <div class="trust" id="security">
+        <div class="item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="t">True redaction (text removed)</span>
+        </div>
+        <div class="item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+          <span class="t">Runs in your environment</span>
+        </div>
+        <div class="item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+          <span class="t">Files never retained</span>
+        </div>
+        <div class="item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span class="t">Auditable, categorized output</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Working / results panel -->
+  <section class="container">
+    <div class="error-box" id="errorBox">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+      <span id="errorMsg">Something went wrong.</span>
+    </div>
+
+    <div class="panel">
+      <div class="loading" id="loading">
+        <span class="spinner"></span>
+        <span>Scanning and redacting…</span>
+      </div>
+
+      <div class="results" id="results">
+        <div class="results-head">
+          <span class="badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Redaction complete
+          </span>
+          <h2 id="totalHeadline">0 items redacted</h2>
+          <p>Sensitive text was permanently removed and categorized for your audit trail.</p>
+        </div>
+
+        <div class="chips" id="chips"></div>
+
+        <div class="compare">
+          <div class="doc-card">
+            <div class="cap orig">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              Original
+              <span class="pill">Before</span>
+            </div>
+            <div class="preview"><img id="beforeImg" alt="Original document" /></div>
+          </div>
+          <div class="doc-card">
+            <div class="cap red">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L4 5v6c0 5 3.4 8.4 8 11 4.6-2.6 8-6 8-11V5l-8-3z"/></svg>
+              Redacted
+              <span class="pill">After</span>
+            </div>
+            <div class="preview"><img id="afterImg" alt="Redacted document" /></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" id="downloadBtn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>
+            Download redacted PDF
+          </button>
+          <span class="reset-link" id="resetLink">Redact another</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container inner">
+      <div>Built for the <strong>Cerebras × Google DeepMind Gemma 4 hackathon</strong> · Enterprise Impact</div>
+      <div class="note">Handle only documents you are authorized to process.</div>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var dropzone   = document.getElementById("dropzone");
+  var fileInput  = document.getElementById("fileInput");
+  var sampleLink = document.getElementById("sampleLink");
+  var loading    = document.getElementById("loading");
+  var results    = document.getElementById("results");
+  var errorBox   = document.getElementById("errorBox");
+  var errorMsg   = document.getElementById("errorMsg");
+  var uploadWrap = document.querySelector(".upload-wrap");
+
+  var beforeImg     = document.getElementById("beforeImg");
+  var afterImg      = document.getElementById("afterImg");
+  var chipsEl       = document.getElementById("chips");
+  var totalHeadline = document.getElementById("totalHeadline");
+  var downloadBtn   = document.getElementById("downloadBtn");
+  var resetLink     = document.getElementById("resetLink");
+
+  var lastRedactedPdf = null;
+
+  function showError(msg) {
+    errorMsg.textContent = msg || "Something went wrong. Please try again.";
+    errorBox.classList.add("show");
+  }
+  function clearError() { errorBox.classList.remove("show"); }
+
+  function setLoading(on) {
+    if (on) { loading.classList.add("show"); } else { loading.classList.remove("show"); }
+  }
+
+  function fileToBase64(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var result = String(reader.result || "");
+        var comma = result.indexOf(",");
+        resolve(comma >= 0 ? result.slice(comma + 1) : result);
+      };
+      reader.onerror = function () { reject(new Error("Could not read the file.")); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function sendRedaction(base64) {
+    clearError();
+    results.classList.remove("show");
+    setLoading(true);
+
+    fetch("/api/redact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pdf_b64: base64 })
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      setLoading(false);
+      if (!data || data.ok === false) {
+        showError((data && data.error) || "We couldn't redact that document. Please try again.");
+        return;
+      }
+      renderResults(data);
+    })
+    .catch(function () {
+      setLoading(false);
+      showError("Network error while contacting the redaction service.");
+    });
+  }
+
+  function renderResults(data) {
+    var total = (typeof data.total === "number") ? data.total : 0;
+    totalHeadline.textContent = total + (total === 1 ? " item redacted" : " items redacted");
+
+    chipsEl.innerHTML = "";
+    var summary = Array.isArray(data.summary) ? data.summary : [];
+    summary.forEach(function (s) {
+      var chip = document.createElement("span");
+      chip.className = "chip";
+      var cat = document.createElement("span");
+      cat.className = "cat";
+      cat.textContent = s.category;
+      var sep = document.createTextNode(" · ");
+      var count = document.createElement("span");
+      count.className = "count";
+      count.textContent = s.count;
+      chip.appendChild(cat);
+      chip.appendChild(sep);
+      chip.appendChild(count);
+      chipsEl.appendChild(chip);
+    });
+
+    if (data.before_png) { beforeImg.src = data.before_png; }
+    if (data.after_png)  { afterImg.src  = data.after_png; }
+    lastRedactedPdf = data.redacted_pdf || null;
+
+    uploadWrap.style.display = "none";
+    results.classList.add("show");
+    results.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function handleFile(file) {
+    if (!file) { return; }
+    if (file.type && file.type.indexOf("pdf") === -1 && !/\.pdf$/i.test(file.name || "")) {
+      showError("Please choose a PDF file.");
+      return;
+    }
+    fileToBase64(file)
+      .then(sendRedaction)
+      .catch(function (e) { showError(e.message); });
+  }
+
+  // ---- Dropzone interactions ----
+  dropzone.addEventListener("click", function () { fileInput.click(); });
+  dropzone.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }
+  });
+  fileInput.addEventListener("change", function () {
+    if (fileInput.files && fileInput.files[0]) { handleFile(fileInput.files[0]); }
+  });
+
+  ["dragenter", "dragover"].forEach(function (ev) {
+    dropzone.addEventListener(ev, function (e) {
+      e.preventDefault(); e.stopPropagation();
+      dropzone.classList.add("drag");
+    });
+  });
+  ["dragleave", "dragend"].forEach(function (ev) {
+    dropzone.addEventListener(ev, function (e) {
+      e.preventDefault(); e.stopPropagation();
+      dropzone.classList.remove("drag");
+    });
+  });
+  dropzone.addEventListener("drop", function (e) {
+    e.preventDefault(); e.stopPropagation();
+    dropzone.classList.remove("drag");
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  });
+
+  // ---- Sample document ----
+  sampleLink.addEventListener("click", function () {
+    clearError();
+    setLoading(true);
+    fetch("/sample.pdf")
+      .then(function (res) {
+        if (!res.ok) { throw new Error("Sample unavailable."); }
+        return res.blob();
+      })
+      .then(function (blob) { return fileToBase64(blob); })
+      .then(function (b64) { sendRedaction(b64); })
+      .catch(function () {
+        setLoading(false);
+        showError("Could not load the sample document.");
+      });
+  });
+
+  // ---- Download ----
+  downloadBtn.addEventListener("click", function () {
+    if (!lastRedactedPdf) { showError("No redacted PDF available to download."); return; }
+    var a = document.createElement("a");
+    a.href = lastRedactedPdf;
+    a.download = "redacted.pdf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+
+  // ---- Reset ----
+  resetLink.addEventListener("click", function () {
+    results.classList.remove("show");
+    clearError();
+    fileInput.value = "";
+    lastRedactedPdf = null;
+    uploadWrap.style.display = "";
+    uploadWrap.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+})();
+</script>
+</body>
+</html>
