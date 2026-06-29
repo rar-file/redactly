@@ -6,6 +6,8 @@ Drop in a PDF and Redactly auto-detects and **truly redacts** every piece of sen
 
 Built for the **Cerebras × Google DeepMind Gemma 4 hackathon** (Enterprise Impact) — detection runs on **`gemma-4-31b` on Cerebras**.
 
+### 🌐 Live demo & walkthrough → **[tryredactly.vercel.app](https://tryredactly.vercel.app)**
+
 ### ⚡ A 200-page legal document, ~2,950 items redacted in under 15 seconds
 
 ![Redactly demo](assets/demo.gif)

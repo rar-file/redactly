@@ -1,0 +1,7 @@
+assets/
+sample_large.pdf
+__pycache__/
+*.pyc
+*.log
+*.py
+vid*/
