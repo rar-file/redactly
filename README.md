@@ -4,7 +4,13 @@
 
 Drop in a PDF and Redactly auto-detects and **truly redacts** every piece of sensitive data — names, emails, phone numbers, SSNs, account/card numbers, addresses, dates of birth — in seconds. It removes the underlying text, not just draws a black box over it.
 
-Built for the **Cerebras × Google DeepMind Gemma 4 hackathon** (Enterprise Impact) — detection runs on **`gemma-4-31b` on Cerebras** (~1,500 tok/s).
+Built for the **Cerebras × Google DeepMind Gemma 4 hackathon** (Enterprise Impact) — detection runs on **`gemma-4-31b` on Cerebras**.
+
+### ⚡ A 200-page legal document, ~2,950 items redacted in under 15 seconds
+
+![Redactly demo](assets/demo.gif)
+
+▶︎ **[Watch the full demo (MP4)](assets/demo.mp4)** — regex sweeps every page for true redaction while 14 concurrent Gemma-4 chunks classify names, addresses and IDs, streaming the count live.
 
 ## Why enterprise teams need it
 

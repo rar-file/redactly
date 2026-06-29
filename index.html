@@ -6,7 +6,7 @@
 <title>Redactly — Redact sensitive documents in seconds</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap" rel="stylesheet" />
 <style>
   :root{
     --paper:#f0e9da; --paper-2:#e7dec9; --card:#fcf9f1; --kraft:#d8c8a6;
@@ -33,8 +33,8 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   a{color:inherit;text-decoration:none}
   ::selection{background:rgba(185,73,47,.18)}
-  .kick{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em}
-  h1,h2,.wordmark,.hero h1,.results-head h2,.dz-title{font-family:'Fraunces','Georgia',serif}
+  .kick{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.18em}
+  h1,h2,.wordmark,.hero h1,.results-head h2,.dz-title{font-family:'Newsreader','Georgia',serif}
 
   /* tape helper used on pasted cards */
   .topbar,.dropzone,.trust .item,.doc-card,.hero p.sub{position:relative}
@@ -54,11 +54,11 @@
     display:grid;place-items:center;box-shadow:var(--sh-sm);transform:rotate(-3deg)}
   .brand .wordmark{font-size:23px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
   .nav-links{display:flex;gap:22px;margin-left:10px}
-  .nav-links a{font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;
+  .nav-links a{font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;
     color:var(--ink-soft);padding-bottom:2px;border-bottom:1.5px solid transparent;transition:.15s}
   .nav-links a:hover{color:var(--ink);border-color:var(--terra)}
   .nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
-  .powered{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;
+  .powered{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11px;
     text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);
     border:1px solid var(--rule);border-radius:999px;padding:6px 13px;background:var(--card)}
   .powered .dot{width:7px;height:7px;border-radius:50%;background:var(--terra)}
@@ -67,7 +67,7 @@
 
   /* hero */
   .hero{padding:80px 0 34px;text-align:center;position:relative}
-  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:12px;
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;
     text-transform:uppercase;letter-spacing:.2em;color:var(--terra);background:transparent;border:0;
     padding:0;margin-bottom:22px}
   .eyebrow::before{content:"";width:26px;height:1.5px;background:var(--terra);display:inline-block}
@@ -90,11 +90,88 @@
   .dz-icon{width:54px;height:54px;border-radius:6px;background:var(--paper-2);border:1px solid var(--rule);
     display:grid;place-items:center;box-shadow:var(--sh-sm);color:var(--terra)}
   .dz-title{font-size:21px;font-weight:500;color:var(--ink)}
-  .dz-hint{font-size:13px;color:var(--ink-soft);font-family:'Space Mono',monospace}
-  .sample-link{margin-top:20px;font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;
+  .dz-hint{font-size:13px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace}
+  .sample-link{margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-transform:uppercase;
     letter-spacing:.08em;color:var(--ink);display:inline-flex;align-items:center;gap:8px;cursor:pointer;
     border-bottom:1.5px solid var(--terra);padding-bottom:2px}
   .sample-link:hover{color:var(--terra)}
+  .sample-row{margin-top:22px;display:flex;flex-direction:column;align-items:center;gap:13px}
+  .cta-large{display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--card);background:var(--ink);border:1px solid var(--ink);
+    border-radius:var(--r);padding:13px 20px;box-shadow:var(--sh-sm);transition:.16s var(--ease);
+    transform:rotate(-.6deg)}
+  .cta-large:hover{background:var(--terra);border-color:var(--terra);transform:rotate(0) translateY(-2px);box-shadow:var(--sh)}
+  .cta-large svg{color:var(--mustard)}
+  .cta-large:hover svg{color:var(--card)}
+  .cta-flash{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);
+    background:var(--mustard);border-radius:999px;padding:3px 9px}
+
+  /* ---- speed scanner (streaming animation) ---- */
+  .loading .scan{display:none}
+  .loading.stream{flex-direction:column;gap:0;padding:30px 26px 28px;text-transform:none;
+    letter-spacing:normal;font-family:'Inter',sans-serif;align-items:stretch}
+  .loading.stream .simple{display:none}
+  .loading.stream .scan{display:grid;grid-template-columns:200px 1fr;gap:30px;align-items:center;width:100%}
+  .scan-head{grid-column:1 / -1;display:flex;align-items:center;gap:10px;margin-bottom:22px;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--terra)}
+  .scan-head .lz{width:7px;height:7px;border-radius:50%;background:var(--terra);animation:lz 1s steps(1) infinite}
+  @keyframes lz{0%,49%{opacity:1}50%,100%{opacity:.25}}
+
+  /* riffling page card */
+  .scan-stage{position:relative;width:170px;height:216px;margin:0 auto}
+  .scan-stage .sheet{position:absolute;inset:0;background:var(--card);border:1px solid var(--rule);
+    border-radius:3px;box-shadow:var(--sh-sm)}
+  .scan-stage .sheet.s1{transform:rotate(-3deg) translate(-6px,5px);background:var(--paper-2)}
+  .scan-stage .sheet.s2{transform:rotate(2.4deg) translate(5px,3px);background:#f4eede}
+  .scan-page{position:absolute;inset:0;background:var(--card);border:1px solid var(--rule);
+    border-radius:3px;box-shadow:var(--sh);overflow:hidden;transform:rotate(-.6deg)}
+  .scan-page .sp-tape{position:absolute;top:-11px;left:50%;width:84px;height:22px;
+    transform:translateX(-50%) rotate(-2deg);background:var(--tape);border:1px solid var(--tape-line);
+    box-shadow:0 2px 6px rgba(42,37,32,.12);z-index:5}
+  /* fake text lines */
+  .scan-page .lines{position:absolute;inset:18px 16px;display:flex;flex-direction:column;gap:7px}
+  .scan-page .ln{height:5px;border-radius:2px;background:var(--rule);opacity:.85}
+  .scan-page .ln:nth-child(3n){width:62%} .scan-page .ln:nth-child(4n){width:88%}
+  .scan-page .ln:nth-child(5n){width:46%} .scan-page .ln.hd{height:8px;width:54%;background:var(--ink);opacity:.55}
+  /* redaction bars flashing on */
+  .scan-page .rbar{position:absolute;height:7px;background:var(--ink);border-radius:1px;opacity:0;
+    animation:rbar 2.1s var(--ease) infinite}
+  @keyframes rbar{0%{opacity:0;transform:scaleX(.1)}8%{opacity:1;transform:scaleX(1)}
+    70%{opacity:1;transform:scaleX(1)}100%{opacity:.92;transform:scaleX(1)}}
+  /* sweeping scan beam */
+  .scan-page .beam{position:absolute;left:0;right:0;height:18px;z-index:6;
+    background:linear-gradient(180deg,transparent,rgba(185,73,47,.16),rgba(185,73,47,.42),rgba(185,73,47,.16),transparent);
+    box-shadow:0 0 12px rgba(185,73,47,.45);animation:beam 1.15s cubic-bezier(.6,0,.4,1) infinite}
+  @keyframes beam{0%{top:-20px}100%{top:216px}}
+  /* riffle flick */
+  .scan-stage .riffle{position:absolute;inset:0;background:var(--card);border:1px solid var(--rule);
+    border-radius:3px;transform-origin:left center;animation:riffle .42s linear infinite;opacity:0;z-index:7}
+  @keyframes riffle{0%{opacity:0;transform:rotateY(0) translateX(0)}
+    18%{opacity:.9}55%{opacity:.5;transform:rotateY(-58deg) translateX(2px)}
+    100%{opacity:0;transform:rotateY(-92deg) translateX(4px)}}
+
+  /* readouts */
+  .scan-readouts{display:flex;flex-direction:column;gap:16px}
+  .ro-page{font-family:'Newsreader','Georgia',serif;font-size:30px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
+  .ro-page b{font-variant-numeric:tabular-nums}
+  .ro-page span{color:var(--ink-soft)}
+  .progress-track{height:12px;border-radius:999px;background:var(--paper-2);border:1px solid var(--rule);overflow:hidden;position:relative}
+  .progress-fill{height:100%;width:0%;border-radius:999px;
+    background:linear-gradient(90deg,var(--terra),var(--mustard));transition:width .25s linear}
+  .ro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}
+  .ro{background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:13px 14px;box-shadow:var(--sh-sm)}
+  .ro:nth-child(1){border-top:3px solid var(--terra);transform:rotate(-1deg)}
+  .ro:nth-child(2){border-top:3px solid var(--teal);transform:rotate(.8deg)}
+  .ro:nth-child(3){border-top:3px solid var(--navy);transform:rotate(-.6deg)}
+  .ro b{display:block;font-family:'Newsreader','Georgia',serif;font-size:25px;font-weight:600;color:var(--ink);
+    line-height:1.05;font-variant-numeric:tabular-nums}
+  .ro span{display:block;margin-top:5px;font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;
+    letter-spacing:.06em;color:var(--ink-soft);line-height:1.35}
+  @media (max-width:640px){
+    .loading.stream .scan{grid-template-columns:1fr;justify-items:center}
+    .scan-readouts{width:100%}
+  }
 
   /* trust strip */
   .trust{max-width:1000px;margin:60px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;background:transparent;border:0}
@@ -113,7 +190,7 @@
   .panel{max-width:1000px;margin:60px auto 0}
   .loading{display:none;align-items:center;gap:14px;justify-content:center;padding:34px;
     border:1px solid var(--rule);border-radius:var(--r);background:var(--card);color:var(--ink-soft);
-    font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.08em;font-size:13px;box-shadow:var(--sh-sm)}
+    font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;font-size:13px;box-shadow:var(--sh-sm)}
   .loading.show{display:flex}
   .spinner{width:22px;height:22px;border-radius:50%;border:2.5px solid var(--rule);border-top-color:var(--terra);animation:spin .8s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
@@ -124,14 +201,14 @@
   /* results */
   .results{display:none}.results.show{display:block}
   .results-head{text-align:center;margin-bottom:8px}
-  .results-head .badge{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11.5px;
+  .results-head .badge{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;
     text-transform:uppercase;letter-spacing:.12em;color:var(--teal);background:var(--card);border:1px solid var(--rule);
     padding:7px 14px;border-radius:999px;margin-bottom:18px;box-shadow:var(--sh-sm)}
   .results-head h2{font-size:clamp(32px,5vw,46px);font-weight:500;color:var(--ink);letter-spacing:-.015em;margin:0 0 8px}
   .results-head p{color:var(--ink-soft);margin:0;font-size:15px}
 
   .chips{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;margin:26px 0 40px}
-  .chip{display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:12px;
+  .chip{display:inline-flex;align-items:center;gap:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;
     text-transform:uppercase;letter-spacing:.05em;color:var(--ink);
     background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:8px 13px;box-shadow:var(--sh-sm)}
   .chip:nth-child(5n+1){transform:rotate(-1.2deg)} .chip:nth-child(5n+2){transform:rotate(.8deg)}
@@ -144,9 +221,9 @@
   .doc-card{border:1px solid var(--rule);border-radius:var(--r);background:var(--card);overflow:hidden;box-shadow:var(--sh)}
   .doc-card:nth-child(1){transform:rotate(-1.1deg)} .doc-card:nth-child(2){transform:rotate(1deg)}
   .doc-card .cap{display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--rule);
-    font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink);background:var(--paper-2)}
+    font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink);background:var(--paper-2)}
   .doc-card .cap svg{color:var(--ink-soft)}
-  .doc-card .cap .pill{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;
+  .doc-card .cap .pill{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;
     margin-left:auto;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--rule)}
   .cap.orig .pill{color:var(--ink-soft);background:var(--card)} .cap.red .pill{color:var(--card);background:var(--terra);border-color:var(--terra)}
   .doc-card .preview{padding:16px;background:var(--paper-2)}
@@ -158,7 +235,7 @@
     font-size:15px;font-weight:600;padding:14px 26px;border-radius:var(--r);border:0;cursor:pointer;
     box-shadow:var(--sh-sm);transition:.16s var(--ease)}
   .btn-primary:hover{background:var(--terra);transform:translateY(-2px);box-shadow:var(--sh)}
-  .reset-link{font-family:'Space Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;
+  .reset-link{font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;
     color:var(--ink-soft);cursor:pointer;border-bottom:1.5px solid var(--rule);padding-bottom:2px}
   .reset-link:hover{color:var(--ink);border-color:var(--ink)}
 
@@ -166,7 +243,7 @@
   footer{margin-top:96px;border-top:1px solid var(--rule);background:var(--ink);padding:40px 0 48px}
   footer .inner{text-align:center;color:var(--paper);font-size:13px;line-height:1.8}
   footer .inner strong{color:var(--mustard);font-weight:600}
-  footer .note{margin-top:6px;color:#9b9085;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.04em}
+  footer .note{margin-top:6px;color:#9b9085;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em}
 
   @media (max-width:860px){
     .nav-links{display:none}
@@ -223,10 +300,15 @@
           <span class="dz-hint">Your file is processed in your environment and never retained.</span>
           <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
         </div>
-        <div style="text-align:center;">
+        <div class="sample-row">
+          <span class="cta-large" id="largeSampleLink">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+            Try the 200-page legal document
+            <span class="cta-flash">⚡ &lt;20s</span>
+          </span>
           <span class="sample-link" id="sampleLink">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-            Try it on a sample document
+            or a one-page sample
           </span>
         </div>
       </div>
@@ -262,8 +344,43 @@
 
     <div class="panel">
       <div class="loading" id="loading">
-        <span class="spinner"></span>
-        <span>Scanning and redacting…</span>
+        <div class="simple">
+          <span class="spinner"></span>
+          <span>Scanning and redacting…</span>
+        </div>
+        <div class="scan">
+          <div class="scan-head"><span class="lz"></span>Speed-redacting · Gemma-4 on Cerebras</div>
+          <div class="scan-stage">
+            <div class="sheet s1"></div>
+            <div class="sheet s2"></div>
+            <div class="scan-page">
+              <div class="sp-tape"></div>
+              <div class="lines">
+                <div class="ln hd"></div>
+                <div class="ln"></div><div class="ln"></div><div class="ln"></div>
+                <div class="ln"></div><div class="ln"></div><div class="ln"></div>
+                <div class="ln"></div><div class="ln"></div><div class="ln"></div>
+                <div class="ln"></div><div class="ln"></div>
+              </div>
+              <div class="rbar" style="top:54px;left:16px;width:78px;animation-delay:.1s"></div>
+              <div class="rbar" style="top:84px;left:40px;width:96px;animation-delay:.5s"></div>
+              <div class="rbar" style="top:112px;left:16px;width:52px;animation-delay:.9s"></div>
+              <div class="rbar" style="top:140px;left:64px;width:70px;animation-delay:1.3s"></div>
+              <div class="rbar" style="top:168px;left:16px;width:104px;animation-delay:1.7s"></div>
+              <div class="beam"></div>
+            </div>
+            <div class="riffle"></div>
+          </div>
+          <div class="scan-readouts">
+            <div class="ro-page">Page <b id="roPage">0</b> <span>/ <b id="roTotal">0</b></span></div>
+            <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
+            <div class="ro-grid">
+              <div class="ro"><b id="roItems">0</b><span>items redacted</span></div>
+              <div class="ro"><b id="roToks">0</b><span>tok/s · Gemma-4 · Cerebras</span></div>
+              <div class="ro"><b id="roElapsed">0.0s</b><span>elapsed</span></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="results" id="results">
@@ -323,11 +440,19 @@
   var dropzone   = document.getElementById("dropzone");
   var fileInput  = document.getElementById("fileInput");
   var sampleLink = document.getElementById("sampleLink");
+  var largeSampleLink = document.getElementById("largeSampleLink");
   var loading    = document.getElementById("loading");
   var results    = document.getElementById("results");
   var errorBox   = document.getElementById("errorBox");
   var errorMsg   = document.getElementById("errorMsg");
   var uploadWrap = document.querySelector(".upload-wrap");
+
+  var roPage    = document.getElementById("roPage");
+  var roTotal   = document.getElementById("roTotal");
+  var roItems   = document.getElementById("roItems");
+  var roToks    = document.getElementById("roToks");
+  var roElapsed = document.getElementById("roElapsed");
+  var progFill  = document.getElementById("progFill");
 
   var beforeImg     = document.getElementById("beforeImg");
   var afterImg      = document.getElementById("afterImg");
@@ -344,8 +469,151 @@
   }
   function clearError() { errorBox.classList.remove("show"); }
 
-  function setLoading(on) {
-    if (on) { loading.classList.add("show"); } else { loading.classList.remove("show"); }
+  function setLoading(on, stream) {
+    if (on) {
+      loading.classList.add("show");
+      if (stream) {
+        loading.classList.add("stream");
+        try { loading.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) {}
+      }
+      else { loading.classList.remove("stream"); }
+    } else {
+      loading.classList.remove("show");
+      loading.classList.remove("stream");
+    }
+  }
+
+  // ---- live readout state (tweened toward targets from NDJSON) ----
+  var tgt = { pages: 0, total: 0, items: 0, toks: 0 };
+  var cur = { pages: 0, items: 0, toks: 0 };
+  var streamStart = 0;
+  var streamFinal = null;   // elapsed seconds once done
+  var rafId = null;
+
+  function resetReadouts() {
+    tgt = { pages: 0, total: 0, items: 0, toks: 0 };
+    cur = { pages: 0, items: 0, toks: 0 };
+    streamFinal = null;
+    roPage.textContent = "0"; roTotal.textContent = "0";
+    roItems.textContent = "0"; roToks.textContent = "0";
+    roElapsed.textContent = "0.0s"; progFill.style.width = "0%";
+  }
+
+  function tick() {
+    // ease displayed numbers toward their targets
+    cur.pages += (tgt.pages - cur.pages) * 0.18;
+    cur.items += (tgt.items - cur.items) * 0.18;
+    cur.toks  += (tgt.toks  - cur.toks)  * 0.22;
+    if (tgt.pages - cur.pages < 0.5) { cur.pages = tgt.pages; }
+    if (tgt.items - cur.items < 0.5) { cur.items = tgt.items; }
+
+    roPage.textContent  = Math.round(cur.pages);
+    roTotal.textContent = tgt.total;
+    roItems.textContent = Math.round(cur.items);
+    roToks.textContent  = Math.round(cur.toks).toLocaleString();
+    if (tgt.total > 0) {
+      progFill.style.width = Math.min(100, (cur.pages / tgt.total) * 100) + "%";
+    }
+    var el = (streamFinal != null) ? streamFinal
+             : (performance.now() - streamStart) / 1000;
+    roElapsed.textContent = el.toFixed(1) + "s";
+
+    rafId = requestAnimationFrame(tick);
+  }
+  function startReadouts() {
+    resetReadouts();
+    streamStart = performance.now();
+    if (rafId) { cancelAnimationFrame(rafId); }
+    rafId = requestAnimationFrame(tick);
+  }
+  function stopReadouts() {
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+  }
+
+  function streamRedaction(base64) {
+    clearError();
+    results.classList.remove("show");
+    uploadWrap.style.display = "none";
+    setLoading(true, true);
+    startReadouts();
+
+    fetch("/api/redact_stream", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pdf_b64: base64 })
+    })
+    .then(function (res) {
+      if (!res.ok || !res.body) { throw new Error("Streaming endpoint unavailable."); }
+      var reader = res.body.getReader();
+      var dec = new TextDecoder();
+      var buf = "";
+      function pump() {
+        return reader.read().then(function (r) {
+          if (r.done) { onStreamEnd(); return; }
+          buf += dec.decode(r.value, { stream: true });
+          var idx;
+          while ((idx = buf.indexOf("\n")) >= 0) {
+            var line = buf.slice(0, idx).trim();
+            buf = buf.slice(idx + 1);
+            if (line) {
+              try { handleEvent(JSON.parse(line)); }
+              catch (e) { /* ignore partial / non-JSON */ }
+            }
+          }
+          return pump();
+        });
+      }
+      return pump();
+    })
+    .catch(function (e) {
+      stopReadouts();
+      setLoading(false);
+      uploadWrap.style.display = "";
+      showError("Streaming error: " + (e && e.message ? e.message : "unknown"));
+    });
+  }
+
+  var streamDone = null;
+  function handleEvent(ev) {
+    if (!ev || !ev.type) { return; }
+    if (ev.type === "start") {
+      tgt.total = ev.pages || 0;
+      roTotal.textContent = tgt.total;
+    } else if (ev.type === "progress") {
+      tgt.pages = ev.pages_done || 0;
+      tgt.items = ev.items || 0;
+      tgt.toks  = ev.tok_s || 0;
+    } else if (ev.type === "done") {
+      streamDone = ev;
+      streamFinal = (typeof ev.elapsed === "number") ? ev.elapsed : null;
+      tgt.pages = tgt.total;
+      tgt.items = ev.total || tgt.items;
+    } else if (ev.type === "error") {
+      throw new Error(ev.error || "redaction failed");
+    }
+  }
+
+  function onStreamEnd() {
+    if (!streamDone) {
+      stopReadouts(); setLoading(false); uploadWrap.style.display = "";
+      showError("The redaction stream ended unexpectedly.");
+      return;
+    }
+    // snap final numbers, fill the bar, let it land for a beat, then reveal.
+    var d = streamDone; streamDone = null;
+    progFill.style.width = "100%";
+    var pages = tgt.total || 0;
+    var secs = (streamFinal != null) ? streamFinal : 0;
+    setTimeout(function () {
+      stopReadouts();
+      // snap readouts to exact finals
+      roPage.textContent = pages; roItems.textContent = (d.total || 0).toLocaleString();
+      roElapsed.textContent = secs.toFixed(1) + "s";
+      setLoading(false);
+      var headline = pages + (pages === 1 ? " page" : " pages") +
+                     " redacted in " + secs.toFixed(1) + "s";
+      renderResults(d, headline);
+    }, 650);
   }
 
   function fileToBase64(file) {
@@ -386,9 +654,10 @@
     });
   }
 
-  function renderResults(data) {
+  function renderResults(data, headline) {
     var total = (typeof data.total === "number") ? data.total : 0;
-    totalHeadline.textContent = total + (total === 1 ? " item redacted" : " items redacted");
+    totalHeadline.textContent = headline ||
+      (total + (total === 1 ? " item redacted" : " items redacted"));
 
     chipsEl.innerHTML = "";
     var summary = Array.isArray(data.summary) ? data.summary : [];
@@ -424,7 +693,7 @@
       return;
     }
     fileToBase64(file)
-      .then(sendRedaction)
+      .then(streamRedaction)
       .catch(function (e) { showError(e.message); });
   }
 
@@ -457,10 +726,12 @@
     }
   });
 
-  // ---- Sample document ----
+  // ---- Small sample document (exercises the non-streaming /api/redact path) ----
   sampleLink.addEventListener("click", function () {
     clearError();
-    setLoading(true);
+    results.classList.remove("show");
+    uploadWrap.style.display = "none";
+    setLoading(true, false);
     fetch("/sample.pdf")
       .then(function (res) {
         if (!res.ok) { throw new Error("Sample unavailable."); }
@@ -470,7 +741,30 @@
       .then(function (b64) { sendRedaction(b64); })
       .catch(function () {
         setLoading(false);
+        uploadWrap.style.display = "";
         showError("Could not load the sample document.");
+      });
+  });
+
+  // ---- 200-page legal document (streamed) ----
+  largeSampleLink.addEventListener("click", function () {
+    clearError();
+    results.classList.remove("show");
+    uploadWrap.style.display = "none";
+    setLoading(true, true);
+    startReadouts();
+    fetch("/sample-large.pdf")
+      .then(function (res) {
+        if (!res.ok) { throw new Error("Large sample unavailable."); }
+        return res.blob();
+      })
+      .then(function (blob) { return fileToBase64(blob); })
+      .then(function (b64) { streamRedaction(b64); })
+      .catch(function () {
+        stopReadouts();
+        setLoading(false);
+        uploadWrap.style.display = "";
+        showError("Could not load the 200-page document.");
       });
   });
 
@@ -489,8 +783,11 @@
   resetLink.addEventListener("click", function () {
     results.classList.remove("show");
     clearError();
+    stopReadouts();
+    setLoading(false);
     fileInput.value = "";
     lastRedactedPdf = null;
+    streamDone = null;
     uploadWrap.style.display = "";
     uploadWrap.scrollIntoView({ behavior: "smooth", block: "center" });
   });
