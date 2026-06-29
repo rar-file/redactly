@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 210" width="1200" height="210" font-family="Helvetica, Arial, sans-serif" role="img" aria-label="How Redactly works">
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 Z" fill="#2a2520"/>
+    </marker>
+    <style>
+      .t{font-weight:700;font-size:14px;fill:#2a2520}
+      .s{font-size:11px;fill:#6f655a}
+      .n{font-family:ui-monospace,'Courier New',monospace;font-size:12px;font-weight:700;fill:#fcf9f1}
+      .card{fill:#fcf9f1;stroke:#2a2520;stroke-width:2;rx:8}
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1200" height="210" fill="#f0e9da"/>
+
+  <!-- arrows between cards -->
+  <g stroke="#2a2520" stroke-width="2.4" marker-end="url(#arr)">
+    <line x1="226" y1="100" x2="252" y2="100"/>
+    <line x1="464" y1="100" x2="490" y2="100"/>
+    <line x1="702" y1="100" x2="728" y2="100"/>
+    <line x1="940" y1="100" x2="966" y2="100"/>
+  </g>
+
+  <!-- step 1 -->
+  <g transform="translate(18 36)">
+    <rect width="205" height="138" rx="8" fill="#fcf9f1" stroke="#2a2520" stroke-width="2"/>
+    <rect width="205" height="6" rx="3" fill="#b9492f"/>
+    <circle cx="28" cy="34" r="13" fill="#b9492f"/><text x="28" y="38" text-anchor="middle" class="n">1</text>
+    <text x="50" y="39" class="t">Ingest the PDF</text>
+    <text x="20" y="74" class="s">Page text, layout and exact</text>
+    <text x="20" y="90" class="s">coordinates are parsed.</text>
+    <text x="20" y="116" class="s" font-style="italic">Nothing leaves your box.</text>
+  </g>
+
+  <!-- step 2 -->
+  <g transform="translate(256 36)">
+    <rect width="205" height="138" rx="8" fill="#fcf9f1" stroke="#2a2520" stroke-width="2"/>
+    <rect width="205" height="6" rx="3" fill="#2f5a54"/>
+    <circle cx="28" cy="34" r="13" fill="#2f5a54"/><text x="28" y="38" text-anchor="middle" class="n">2</text>
+    <text x="50" y="39" class="t">Regex sweep</text>
+    <text x="20" y="74" class="s">Every page, instantly: emails,</text>
+    <text x="20" y="90" class="s">phones, SSNs, account numbers.</text>
+    <text x="20" y="116" class="s" font-style="italic">Guarantees full coverage.</text>
+  </g>
+
+  <!-- step 3 -->
+  <g transform="translate(494 36)">
+    <rect width="205" height="138" rx="8" fill="#fcf9f1" stroke="#2a2520" stroke-width="2"/>
+    <rect width="205" height="6" rx="3" fill="#c08a2e"/>
+    <circle cx="28" cy="34" r="13" fill="#c08a2e"/><text x="28" y="38" text-anchor="middle" class="n">3</text>
+    <text x="50" y="39" class="t">14× Gemma-4</text>
+    <text x="20" y="74" class="s">Concurrent chunks on Cerebras</text>
+    <text x="20" y="90" class="s">flag names, addresses, IDs that</text>
+    <text x="20" y="106" class="s">regex alone would miss.</text>
+  </g>
+
+  <!-- step 4 -->
+  <g transform="translate(732 36)">
+    <rect width="205" height="138" rx="8" fill="#fcf9f1" stroke="#2a2520" stroke-width="2"/>
+    <rect width="205" height="6" rx="3" fill="#33415c"/>
+    <circle cx="28" cy="34" r="13" fill="#33415c"/><text x="28" y="38" text-anchor="middle" class="n">4</text>
+    <text x="50" y="39" class="t">True redaction</text>
+    <text x="20" y="74" class="s">Underlying text is removed from</text>
+    <text x="20" y="90" class="s">the file — not masked. You can't</text>
+    <text x="20" y="106" class="s">copy-paste it back out.</text>
+  </g>
+
+  <!-- step 5 -->
+  <g transform="translate(970 36)">
+    <rect width="212" height="138" rx="8" fill="#2a2520"/>
+    <rect width="212" height="6" rx="3" fill="#b9492f"/>
+    <circle cx="28" cy="34" r="13" fill="#fcf9f1"/><text x="28" y="38" text-anchor="middle" class="n" fill="#2a2520">5</text>
+    <text x="50" y="39" class="t" fill="#fcf9f1">Post-safe PDF</text>
+    <text x="20" y="74" class="s" fill="#cfc7b6">Categorized, auditable redacted</text>
+    <text x="20" y="90" class="s" fill="#cfc7b6">PDF — streamed back live as</text>
+    <text x="20" y="106" class="s" fill="#cfc7b6">every item is removed.</text>
+  </g>
+</svg>

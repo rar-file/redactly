@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" width="1200" height="380" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Redactly — enterprise document redaction">
+  <defs>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#2a2520" opacity="0.06"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fcf9f1"/><stop offset="1" stop-color="#f0e9da"/>
+    </linearGradient>
+  </defs>
+
+  <!-- paper -->
+  <rect x="5" y="5" width="1190" height="370" rx="16" fill="url(#fade)" stroke="#2a2520" stroke-width="3"/>
+  <rect x="5" y="5" width="1190" height="370" rx="16" fill="url(#dots)"/>
+
+  <!-- masking tape accents -->
+  <rect x="556" y="-12" width="120" height="30" rx="2" fill="#d6c8a8" fill-opacity="0.6" stroke="#96846044" transform="rotate(-2 616 3)"/>
+
+  <!-- brand -->
+  <g transform="translate(70 58)">
+    <rect x="0" y="0" width="46" height="46" rx="10" fill="#2a2520"/>
+    <path d="M23 8 L37 13 V25 c0 9 -6 13.5 -14 16 c-8 -2.5 -14 -7 -14 -16 V13 Z" fill="none" stroke="#f0e9da" stroke-width="2.4" stroke-linejoin="round"/>
+    <rect x="13" y="21" width="20" height="6" rx="1.4" fill="#b9492f"/>
+    <text x="60" y="33" font-size="30" font-weight="600" fill="#2a2520">Redactly</text>
+  </g>
+
+  <!-- headline -->
+  <text x="70" y="184" font-size="54" font-weight="600" fill="#2a2520">Redact sensitive documents</text>
+  <text x="70" y="246" font-size="54" font-style="italic" font-weight="600" fill="#b9492f">in seconds.</text>
+  <rect x="74" y="258" width="262" height="5" rx="2.5" fill="#c08a2e"/>
+
+  <text x="74" y="300" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#6f655a">Enterprise PDF redaction — names, SSNs, accounts &amp; addresses</text>
+  <text x="74" y="324" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#6f655a"><tspan font-weight="700" fill="#2a2520">removed from the file</tspan>, not hidden under a black box.</text>
+
+  <!-- stat strip -->
+  <g font-family="ui-monospace, 'Courier New', monospace" font-size="12.5" fill="#2a2520" letter-spacing="1">
+    <circle cx="78" cy="352" r="4" fill="#b9492f"/><text x="90" y="356">200 PAGES</text>
+    <circle cx="214" cy="352" r="4" fill="#2f5a54"/><text x="226" y="356">~2,950 ITEMS</text>
+    <circle cx="392" cy="352" r="4" fill="#c08a2e"/><text x="404" y="356">UNDER 15s</text>
+    <circle cx="520" cy="352" r="4" fill="#33415c"/><text x="532" y="356">GEMMA-4-31B · CEREBRAS</text>
+  </g>
+
+  <!-- before / redacted document motif -->
+  <g transform="translate(832 70) rotate(2)">
+    <!-- faint 'before' page behind -->
+    <g transform="translate(20 14) rotate(-3)" opacity="0.5">
+      <rect x="0" y="0" width="250" height="232" rx="8" fill="#ffffff" stroke="#d9cfba"/>
+      <g fill="#cfc7b6">
+        <rect x="22" y="26" width="150" height="9" rx="2"/><rect x="22" y="48" width="206" height="7" rx="2"/>
+        <rect x="22" y="64" width="190" height="7" rx="2"/><rect x="22" y="92" width="120" height="7" rx="2"/>
+        <rect x="22" y="108" width="206" height="7" rx="2"/><rect x="22" y="124" width="170" height="7" rx="2"/>
+      </g>
+    </g>
+    <!-- redacted page front -->
+    <rect x="0" y="0" width="256" height="240" rx="8" fill="#fcf9f1" stroke="#2a2520" stroke-width="2"/>
+    <rect x="-6" y="-12" width="96" height="24" rx="2" fill="#d6c8a8" fill-opacity="0.7" stroke="#96846044" transform="rotate(-3 42 0)"/>
+    <text x="22" y="34" font-size="11" font-family="ui-monospace, monospace" fill="#6f655a" letter-spacing="1">CONFIDENTIAL</text>
+    <g>
+      <rect x="22" y="52" width="120" height="9" rx="2" fill="#cfc7b6"/>
+      <rect x="22" y="74" width="90" height="13" rx="2" fill="#2a2520"/><rect x="120" y="74" width="74" height="13" rx="2" fill="#2a2520"/>
+      <rect x="22" y="98" width="206" height="8" rx="2" fill="#cfc7b6"/>
+      <rect x="22" y="118" width="150" height="13" rx="2" fill="#2a2520"/>
+      <rect x="22" y="142" width="110" height="8" rx="2" fill="#cfc7b6"/>
+      <rect x="22" y="160" width="180" height="13" rx="2" fill="#2a2520"/>
+      <rect x="22" y="184" width="70" height="8" rx="2" fill="#cfc7b6"/><rect x="100" y="184" width="128" height="13" rx="2" fill="#2a2520"/>
+      <rect x="22" y="208" width="160" height="8" rx="2" fill="#cfc7b6"/>
+    </g>
+    <!-- REDACTED stamp -->
+    <g transform="translate(150 150) rotate(-9)">
+      <rect x="-58" y="-15" width="116" height="30" rx="5" fill="#b9492f" stroke="#2a2520" stroke-width="2"/>
+      <text x="0" y="6" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#fcf9f1" text-anchor="middle" letter-spacing="1">REDACTED</text>
+    </g>
+  </g>
+</svg>
